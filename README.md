@@ -12,7 +12,7 @@
 -  [数据修改记录 AutoFingerPrint](#change-history)
 
 <h3 id="install">安装</h3>
-安装命令：`composer require cherrylu/tp-support`
+安装命令 `composer require cherrylu/tp-support`
 
 安装完成后如果你想用到本包的<a href="#change-history">`AutoFingerPrint`</a>模块，请将包内的`1_create_change_history_table`文件复制到项目的`migrations`文件夹，并在项目根目录运行`php think migrate:run`命令。
 
@@ -72,7 +72,7 @@
 
 <h3 id="auth">全局身份信息 Auth</h3>
 
-系统进行玩身份验证后，可将用户的模型数据存入 
+系统进行完身份验证后，可将用户的模型数据存入 
 > Auth::setCurrentUser(<span id="current_model">User::find($userId)</span>)
 
 之后便可以在其他地方使用了
@@ -126,11 +126,11 @@ $data = [
 >   `Model::query()->where()...`  这种写法可以使IDE的提示更友好，但是TP本身的模型就有问题，一些IDE提示的方法不见得能正常工作，血压也不用太高，大部分还是没问题的
 ；
 
-> `Model::withTrash()` 包含软删除数据的查询，这个TP原生的💩方法，记得一定要写在最前面
+> `Model::withTrashed()` 包含软删除数据的查询，这个TP原生的💩方法，记得一定要写在所有查询条件的最前面
 
 > `Model::updateOrCreate($conditions,$update)` 和Laravel的一样，相比TP的`save`描述更语义化，
 
-> `$model->saveQuietly()` 静默保存，不触发模型`AutoFingerPrint`中的事件，也是参考了Laravel
+> `$model->saveQuietly()` 静默保存，不触发`AutoFingerPrint`中的事件，也是参考了Laravel
 
 > `$model->load('your_relation')` `$model->loadMissing('your_relation')` 动态加载关系，参考Laravel的，但是没有Laravel的强，只能支持单层关系加载
 
@@ -162,7 +162,8 @@ class Goods extends \cherrylu\TpSupport\Model\BaseModel {
     }
     
     public function users(){
-        /** 在TP中，被软删的数据(此处指User)使用 belongsToMany 是无法加载的，所以请用这个吧 */
+        /** 在TP中，被软删的数据使用 belongsToMany 是无法加载的，所以请用这个吧 */
+        /** 例如此处的User，如果数据被软删了，使用 belongsToMany 加 removeOption 也是无法关联到的 */
         return $this->cherryBelongsToMany(User::class, UserGoods::class, 'your_column', 'your_column', true);
     }
     
@@ -172,7 +173,7 @@ class Goods extends \cherrylu\TpSupport\Model\BaseModel {
 
 <h3 id="migration">数据迁移 migration</h3>
 
-TP 的集成的`Migrate`可以改为集成本包中的类，使IDE提示更友好
+TP 的集成的`Migrate`可以改为集成本包中的类，使IDE提示更友好，另外也增加了 `addFingerPrint` 方法可以快速定义`AutoFingerPrint`所需要的字段
 
 ```php
 
@@ -197,7 +198,7 @@ class CreateGoodsTable extends \cherrylu\TpSupport\Migrate\MineMigrator
 ```php
 class Goods extends \cherrylu\TpSupport\Model\BaseModel {
 
-    /** 引入 AutoFingerPrint trait 每当使用模型就行修改时都会创建修改历史了，数据存在 change_history 表中*/
+    /** 引入 AutoFingerPrint trait 每当使用模型进行修改时都会创建修改历史了，数据存在 change_history 表中*/
     use \cherrylu\TpSupport\Model\AutoFingerPrint; 
 }
 
