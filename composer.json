@@ -5,7 +5,10 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Cherrylu\\TpSupport\\": "src"
+            "Cherrylu\\TpSupport\\": "src",
+            "CherryLu\\TpSupport\\Migrate\\": "src/Migrate",
+            "CherryLu\\TpSupport\\Model\\": "src/Model",
+            "CherryLu\\TpSupport\\Validate\\\\": "src/Validate"
         }
     },
     "authors": [
