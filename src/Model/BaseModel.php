@@ -384,4 +384,8 @@ class BaseModel extends Model
 
         return $value;
     }
+
+    public static function __callStatic($method, $args) {
+        return parent::__callStatic($method, $args);
+    }
 }
