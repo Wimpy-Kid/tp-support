@@ -232,18 +232,6 @@ class BaseModel extends Model
     }
 
     /**
-     * @param null $data
-     *
-     * @return BaseModel|null
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\DbException
-     * @throws \think\db\exception\ModelNotFoundException
-     */
-    public function find($data = null) {
-        return parent::find($data);
-    }
-
-    /**
      * @param array $withOutScope
      *
      * @return Query
@@ -385,7 +373,4 @@ class BaseModel extends Model
         return $value;
     }
 
-    public static function __callStatic($method, $args) {
-        return parent::__callStatic($method, $args);
-    }
 }
