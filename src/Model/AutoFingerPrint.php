@@ -1,9 +1,9 @@
 <?php
 
 
-namespace cherrylu\TpSupport\Model;
+namespace CherryLu\TpSupport\Model;
 
-use cherrylu\TpSupport\Auth;
+use CherryLu\TpSupport\Auth;
 use Carbon\Carbon;
 use think\Model;
 

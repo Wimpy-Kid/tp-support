@@ -1,7 +1,7 @@
 <?php
 
 
-namespace cherrylu\TpSupport\Model;
+namespace CherryLu\TpSupport\Model;
 
 use think\model\concern\SoftDelete;
 

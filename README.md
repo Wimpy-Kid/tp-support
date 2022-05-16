@@ -12,7 +12,7 @@
 -  [数据修改记录 AutoFingerPrint](#change-history)
 
 <h3 id="install">安装</h3>
-安装命令 `composer require cherrylu/tp-support`
+安装命令 `composer require CherryLu/tp-support`
 
 安装完成后如果你想用到本包的<a href="#change-history">`AutoFingerPrint`</a>模块，请将包内的`1_create_change_history_table`文件复制到项目的`migrations`文件夹，并在项目根目录运行`php think migrate:run`命令。
 
@@ -24,7 +24,7 @@
 ```php
     namespace your\namespace;
 
-    use cherrylu\TpSupport\Validate\BaseValidator;
+    use CherryLu\TpSupport\Validate\BaseValidator;
 
     class UpdateOrCreateActivity extends BaseValidator {
 
@@ -100,7 +100,7 @@ $data = [
     ], // ...
 ];
 
-\cherrylu\TpSupport\Exporter::export([
+\CherryLu\TpSupport\Exporter::export([
     'nick_name'    => '用户昵称',
     'phone'        => '登录手机',
     'goods'        => [ // 合并单元格
@@ -140,7 +140,7 @@ $data = [
 
 支持的属性
 ```php
-class Goods extends \cherrylu\TpSupport\Model\BaseModel {
+class Goods extends \CherryLu\TpSupport\Model\BaseModel {
 
     public $modelName = '商品'; // 当有异常需要抛出时，可以用这个属性使消息更具可读性
 
@@ -177,7 +177,7 @@ TP 的集成的`Migrate`可以改为集成本包中的类，使IDE提示更友�
 
 ```php
 
-class CreateGoodsTable extends \cherrylu\TpSupport\Migrate\MineMigrator
+class CreateGoodsTable extends \CherryLu\TpSupport\Migrate\MineMigrator
 {
     public function change()
     {
@@ -196,10 +196,10 @@ class CreateGoodsTable extends \cherrylu\TpSupport\Migrate\MineMigrator
 <h3 id="change-history">数据修改记录 </h3>
 
 ```php
-class Goods extends \cherrylu\TpSupport\Model\BaseModel {
+class Goods extends \CherryLu\TpSupport\Model\BaseModel {
 
     /** 引入 AutoFingerPrint trait 每当使用模型进行修改时都会创建修改历史了，数据存在 change_history 表中*/
-    use \cherrylu\TpSupport\Model\AutoFingerPrint; 
+    use \CherryLu\TpSupport\Model\AutoFingerPrint; 
 }
 
 /** 使用 saveQuietly 修改即可不触发此事件 */

@@ -1,6 +1,6 @@
 <?php
 
-namespace cherrylu\TpSupport;
+namespace CherryLu\TpSupport;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;

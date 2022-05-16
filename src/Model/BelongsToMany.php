@@ -9,7 +9,7 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace cherrylu\TpSupport\Model;
+namespace CherryLu\TpSupport\Model;
 
 use Closure;
 use think\Collection;

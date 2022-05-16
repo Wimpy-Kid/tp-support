@@ -1,7 +1,7 @@
 <?php
 
 
-namespace cherrylu\TpSupport;
+namespace CherryLu\TpSupport;
 
 class Request extends \think\Request {
 

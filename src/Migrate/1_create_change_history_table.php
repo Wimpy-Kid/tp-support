@@ -1,7 +1,7 @@
 <?php
 
 
-class CreateChangeHistoryTable extends cherrylu\TpSupport\Migrate\MineMigrator
+class CreateChangeHistoryTable extends CherryLu\TpSupport\Migrate\MineMigrator
 {
     /**
      * Change Method.

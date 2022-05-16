@@ -1,6 +1,6 @@
 <?php
 
-namespace cherrylu\TpSupport;
+namespace CherryLu\TpSupport;
 
 
 class Auth {

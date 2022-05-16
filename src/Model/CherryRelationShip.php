@@ -2,7 +2,7 @@
 
 declare (strict_types = 1);
 
-namespace cherrylu\TpSupport\Model;
+namespace CherryLu\TpSupport\Model;
 
 use think\helper\Str;
 

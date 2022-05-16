@@ -1,6 +1,6 @@
 <?php
 
-namespace cherrylu\TpSupport\Validate;
+namespace CherryLu\TpSupport\Validate;
 
 use think\Validate;
 

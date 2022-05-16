@@ -1,5 +1,5 @@
 {
-    "name": "cherrylu/tp-support",
+    "name": "CherryLu/tp-support",
     "description": "make the TP shit not that shit",
     "type": "library",
     "license": "MIT",
@@ -10,7 +10,7 @@
     },
     "authors": [
         {
-            "name": "cherrylu",
+            "name": "CherryLu",
             "email": "1002161225@qq.com"
         }
     ],

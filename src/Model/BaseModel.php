@@ -1,7 +1,7 @@
 <?php
 
 
-namespace cherrylu\TpSupport\Model;
+namespace CherryLu\TpSupport\Model;
 
 use think\db\BaseQuery as Query;
 use think\Model;
