@@ -12,7 +12,9 @@
 -  [数据修改记录 AutoFingerPrint](#change-history)
 
 <h3 id="install">安装</h3>
+
 安装命令
+
 ```
 composer require cherrylu/tp-support
 ```
