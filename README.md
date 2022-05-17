@@ -12,8 +12,7 @@
 -  [数据修改记录 AutoFingerPrint](#change-history)
 
 <h3 id="install">安装</h3>
-安装命令
-`composer require cherrylu/tp-support`
+安装命令```composer require cherrylu/tp-support```
 
 安装完成后如果你想用到本包的<a href="#change-history">`AutoFingerPrint`</a>模块，请将包内的`1_create_change_history_table`文件复制到项目的`migrations`文件夹，并在项目根目录运行`php think migrate:run`命令。
 
