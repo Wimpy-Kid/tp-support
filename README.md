@@ -12,7 +12,7 @@
 -  [数据修改记录 AutoFingerPrint](#change-history)
 
 <h3 id="install">安装</h3>
-安装命令 `composer require CherryLu/tp-support`
+安装命令`composer require CherryLu/tp-support`
 
 安装完成后如果你想用到本包的<a href="#change-history">`AutoFingerPrint`</a>模块，请将包内的`1_create_change_history_table`文件复制到项目的`migrations`文件夹，并在项目根目录运行`php think migrate:run`命令。
 
@@ -123,10 +123,10 @@ $data = [
 本来作为一个毫无感情的数据库查询机器，什么大风大浪没见过，但是TP的模型查询可以让我直接血压飙升，确实很佩服他了；
 
 以下是本包的`Model`特性
->   `Model::query()->where()...`  这种写法可以使IDE的提示更友好，但是TP本身的模型就有问题，一些IDE提示的方法不见得能正常工作，血压也不用太高，大部分还是没问题的
-；
+> `Model::query()->where()...`  这种写法可以使IDE的提示更友好，但是TP本身的模型就有问题，一些IDE提示的方法不见得能正常工作，血压也不用太高，大部分还是没问题的。
+> `Model::query('string or array')` 也支持传入参数，可以去除对应的全局查询条件
 
-> `Model::withTrashed()` 包含软删除数据的查询，这个TP原生的💩方法，记得一定要写在所有查询条件的最前面
+> `Model::withTrashed()` 包含软删除数据的查询，这个是TP原生的💩方法，记得一定要写在所有查询条件的最前面
 
 > `Model::updateOrCreate($conditions,$update)` 和Laravel的一样，相比TP的`save`描述更语义化，
 
@@ -193,7 +193,7 @@ class CreateGoodsTable extends \CherryLu\TpSupport\Migrate\MineMigrator
 
 ```
 
-<h3 id="change-history">数据修改记录 </h3>
+<h3 id="change-history">数据修改记录 AutoFingerPrint</h3>
 
 ```php
 class Goods extends \CherryLu\TpSupport\Model\BaseModel {
@@ -206,3 +206,8 @@ class Goods extends \CherryLu\TpSupport\Model\BaseModel {
 $model->saveQuietly();
 
 ```
+
+引入此模块后，将会自动维护数据表中的 `create_time` `create_by` `update_time` `update_by` `delete_time` `delete_by` 字段，
+并会在`change_history`表中保存数据修改前后的快照
+
+使用`$model->saveQuietly()`保存可以不触发以上事件
