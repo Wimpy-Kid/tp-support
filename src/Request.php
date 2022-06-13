@@ -13,4 +13,12 @@ class Request extends \think\Request {
         return $this->param($name);
     }
 
+    public function setMiddlewareParam($name, $value) {
+        $this->middleware[$name] = $value;
+    }
+
+    public function getMiddlewareParam($name) {
+        return $this->middleware($name);
+    }
+
 }
