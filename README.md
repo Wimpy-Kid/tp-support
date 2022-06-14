@@ -1,5 +1,5 @@
 让 ThinkPHP 好用一点，对IDE更友好，也更贴近 Laravel 框架的习惯；
-虽然也还是很烂，尽力了🤣。为了不让你心情更堵，不建议使用本包。
+虽然也还是很烂，尽力了🤣。本包仅迎合作者习惯，也有很多问题，不建议大伙用。
 
 目录
 -  [安装](#install)
@@ -46,7 +46,10 @@ composer require cherrylu/tp-support
             'cover_img.require' => '封面不能为空',
         ];
     
-        /** 也可以只定义各个表单的名称，会自动返回对应的验证信息 */
+        /** 
+        * 也可以只定义各个表单的名称，会自动返回对应的验证信息
+        * 用于取代 $message 
+        */
         protected $formMaps = [
             'id'           => '关键信息',
             'cover_img'    => '封面',
@@ -156,6 +159,7 @@ class Goods extends \CherryLu\TpSupport\Model\BaseModel {
         'available',
     ];
     
+    /** $append 属性依赖于获取器 */
     public function getAvailableAttr() {
         return !$this->delete_time;
     }
@@ -207,7 +211,7 @@ class Goods extends \CherryLu\TpSupport\Model\BaseModel {
     use \CherryLu\TpSupport\Model\AutoFingerPrint; 
 }
 
-/** 使用 saveQuietly 修改即可不触发此事件 */
+/** 使用 saveQuietly 修改即可不触发AutoFingerPrint事件 */
 $model->saveQuietly();
 
 ```
@@ -215,4 +219,4 @@ $model->saveQuietly();
 引入此模块后，将会自动维护数据表中的 `create_time` `create_by` `update_time` `update_by` `delete_time` `delete_by` 字段，
 并会在`change_history`表中保存数据修改前后的快照
 
-使用`$model->saveQuietly()`保存可以不触发以上事件
+使用`$model->saveQuietly()`保存可以不触发`AutoFingerPrint`事件
