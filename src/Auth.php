@@ -5,11 +5,11 @@ namespace CherryLu\TpSupport;
 
 class Auth {
 
-    /** @var YourUserModel  */
+    /** @var \app\model\Account | \app\model\User  */
     protected static $currentUserIns = null;
 
     /**
-     * @return YourUserModel
+     * @return \app\model\Account | \app\model\User
      */
     public static function user() {
         return Auth::$currentUserIns;

@@ -272,7 +272,7 @@ class BaseModel extends Model
         $model = (new static)->db()->where($where)->find();
         if (!$model) {
             $model = (new static($where));
-            $data && $model->save($data);
+            $model->save($data);
         }
         return $model;
     }
