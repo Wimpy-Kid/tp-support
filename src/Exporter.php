@@ -18,6 +18,15 @@ class Exporter
 
         $header && $header = array_change_key_case($header,CASE_LOWER);
 
+        if ( !$detailName ) {
+            foreach ( $header as $name => $item ) {
+                if ( is_array($item) ) {
+                    $detailName = $name;
+                    break;
+                }
+            }
+        }
+
         if (isset($header[$detailName])) {
             $descField = array_change_key_case($header[$detailName],CASE_LOWER);;
             $descKeyField = array_keys($descField);

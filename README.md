@@ -29,7 +29,7 @@ composer require cherrylu/tp-support
 ```php
     namespace your\namespace;
 
-    use CherryLu\TpSupport\Validate\BaseValidator;
+    use Cherrylu\TpSupport\Validate\BaseValidator;
 
     class UpdateOrCreateActivity extends BaseValidator {
 
@@ -108,7 +108,7 @@ $data = [
     ], // ...
 ];
 
-\CherryLu\TpSupport\Exporter::export([
+\Cherrylu\TpSupport\Exporter::export([
     'nick_name'    => '用户昵称',
     'phone'        => '登录手机',
     'goods'        => [ // 合并单元格
@@ -140,15 +140,16 @@ $data = [
 
 > `$model->saveQuietly()` 静默保存，不触发`AutoFingerPrint`中的事件，也是参考了Laravel
 
-> `$model->load('your_relation')` `$model->loadMissing('your_relation')` 动态加载关系，参考Laravel的，但是没有Laravel的强，只能支持单层关系加载
+> `$model->load('your_relation')` `$model->loadMissing('your_relation.your_other_relation')` 动态加载关系，参考Laravel的，但是没有Laravel的强
 
-> `Model::with('relation:id,name,other_column')` 加载指定关系并指定取其字段，只支持单层关系加载，多层的还是用TP原生吧
+> `Model::with('relation:id,name,other_column')` 加载指定关系并指定取其字段，只支持单层关系加载，多层指定字段还是用TP原生吧
 
 > `$model->forceSave($data)` 更新已被软删除的数据，你敢信，TP居然不能用模型更新软删的数据💩💩💩
 
 支持的属性
+
 ```php
-class Goods extends \CherryLu\TpSupport\Model\BaseModel {
+class Goods extends \Cherrylu\TpSupport\Model\BaseModel {
 
     public $modelName = '商品'; // 当有异常需要抛出时，可以用这个属性使消息更具可读性
 
@@ -186,7 +187,7 @@ TP 的集成的`Migrate`可以改为集成本包中的类，使IDE提示更友�
 
 ```php
 
-class CreateGoodsTable extends \CherryLu\TpSupport\Migrate\MineMigrator
+class CreateGoodsTable extends \Cherrylu\TpSupport\Migrate\MineMigrator
 {
     public function change()
     {
@@ -205,10 +206,10 @@ class CreateGoodsTable extends \CherryLu\TpSupport\Migrate\MineMigrator
 <h3 id="change-history">数据修改记录 AutoFingerPrint</h3>
 
 ```php
-class Goods extends \CherryLu\TpSupport\Model\BaseModel {
+class Goods extends \Cherrylu\TpSupport\Model\BaseModel {
 
     /** 引入 AutoFingerPrint trait 每当使用模型进行修改时都会创建修改历史了，数据存在 change_history 表中*/
-    use \CherryLu\TpSupport\Model\AutoFingerPrint; 
+    use Cherrylu\TpSupport\Model\AutoFingerPrint; 
 }
 
 /** 使用 saveQuietly 修改即可不触发AutoFingerPrint事件 */

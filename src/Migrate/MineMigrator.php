@@ -1,7 +1,7 @@
 <?php
 
 
-namespace CherryLu\TpSupport\Migrate;
+namespace Cherrylu\TpSupport\Migrate;
 
 
 use think\migration\Migrator;

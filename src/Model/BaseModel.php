@@ -166,7 +166,7 @@ class BaseModel extends Model
         $static = static::query();
         if ( is_string($with) ) {
             if ( false !== strpos($with, ':') ) {
-                $with = explode(':', str_replace(' ', '', $with));
+                $with = explode(':', $with);
                 $relation = $with[0];
                 $columns = explode(',', $with[1]);
                 $with = [ $relation => function(Relation $relation) use ( $columns ) { $relation->field($columns); } ];
@@ -175,7 +175,7 @@ class BaseModel extends Model
             foreach ( $with as $r => $f ) {
                 if ( is_string($f) ) {
                     if ( false !== strpos($f, ':') ) {
-                        $f = explode(':', str_replace(' ', '', $f));
+                        $f = explode(':', $f);
                         $relation = $f[0];
                         $columns = explode(',', $f[1]);
                         unset($with[$r]);
@@ -371,6 +371,42 @@ class BaseModel extends Model
         }
 
         return $value;
+    }
+
+    /**
+     * 检测时间字段的实际类型
+     * @access public
+     * @param  bool|string $type
+     * @return mixed
+     */
+    protected function checkTimeFieldType($type)
+    {
+        if (true === $type) {
+            if (isset($this->type[$this->createTime])) {
+                $type = $this->type[$this->createTime];
+            } elseif (isset($this->schema[$this->createTime]) && in_array($this->schema[$this->createTime], ['datetime', 'date', 'timestamp', 'int'])) {
+                $type = $this->schema[$this->createTime];
+            } else {
+                $type = $this->getFieldType($this->createTime);
+            }
+        } elseif ( is_string($type) ) {
+            $type = $this->getFieldType($type);
+        }
+
+        return $type;
+    }
+
+    /**
+     * 自动写入时间戳
+     * @access protected
+     * @return mixed
+     */
+    protected function autoWriteTimestamp($column = true)
+    {
+        // 检测时间字段类型
+        $type = $this->checkTimeFieldType($column ?: $this->autoWriteTimestamp);
+
+        return is_string($type) ? $this->getTimeTypeValue($type) : time();
     }
 
 }
