@@ -68,7 +68,7 @@ class HasMany extends \think\model\relation\HasMany
         if (isset($result->$localKey)) {
             $pk   = $result->$localKey;
             $data = $this->eagerlyOneToMany([
-                [$this->foreignKey, '=', $pk],
+                [$this->foreignKey, 'in', $pk],
             ], $subRelation, $closure, $cache);
 
             // 关联数据封装
