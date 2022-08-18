@@ -33,4 +33,25 @@ trait CherryRelationShip
         return new BelongsToMany($this, $model, $middle, $foreignKey, $localKey, $withTrashed);
     }
 
+    /**
+     * 一对多关联，用于一个字段存贮多个id并用逗号隔开时使用
+     *
+     * @param string $model
+     * @param string $foreignKey
+     * @param string $localKey
+     *
+     * @return HasMany
+     */
+    public function cherryHasMany(string $model, string $foreignKey = '', string $localKey = '') {
+
+        $model      = $this->parseModel($model);
+        /** @var BaseModel $modelIns */
+        $modelIns   = new $model;
+        $localKey   = $localKey ?: $this->getForeignKey($modelIns->name);
+        $foreignKey = $foreignKey ?: $modelIns->getPk();
+
+        return new HasMany($this, $model, $foreignKey, $localKey);
+
+    }
+
 }
