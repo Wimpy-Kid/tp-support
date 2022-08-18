@@ -3,6 +3,7 @@
 namespace CherryLu\TpSupport\Model;
 
 use Closure;
+use think\Model;
 
 /**
  * 一对多关联类
@@ -58,6 +59,42 @@ class HasMany extends \think\model\relation\HasMany
         }
 
         return $data;
+    }
+
+    public function eagerlyResult(Model $result, string $relation, array $subRelation = [], Closure $closure = null, array $cache = []): void
+    {
+        $localKey = $this->localKey;
+
+        if (isset($result->$localKey)) {
+            $pk   = $result->$localKey;
+            $data = $this->eagerlyOneToMany([
+                [$this->foreignKey, '=', $pk],
+            ], $subRelation, $closure, $cache);
+
+            // 关联数据封装
+            if (!isset($data[$pk])) {
+                $data[$pk] = [];
+            }
+
+            $relateData = [];
+            $pk = $result->$localKey;
+
+            if ( false === strpos($pk, ',') ) {
+                if (isset($data[$pk])) {
+                    $relateData = $data[$pk];
+                }
+            } else {
+                $pk = explode(',', $pk);
+                foreach ( $pk as $item ) {
+                    if ( isset($data[$item][0]) ) {
+                        $relateData[] = $data[$item][0];
+                    }
+                }
+            }
+
+            $result->setRelation($relation, $this->resultSetBuild($relateData, clone $this->parent));
+
+        }
     }
 
     public function eagerlyResultSet(array &$resultSet, string $relation, array $subRelation, Closure $closure = null, array $cache = []): void
