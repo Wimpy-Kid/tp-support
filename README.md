@@ -149,6 +149,9 @@ $data = [
 支持的属性
 
 ```php
+/**
+ * 商品Model
+ */
 class Goods extends \Cherrylu\TpSupport\Model\BaseModel {
 
     public $modelName = '商品'; // 当有异常需要抛出时，可以用这个属性使消息更具可读性
@@ -175,6 +178,24 @@ class Goods extends \Cherrylu\TpSupport\Model\BaseModel {
         /** 在TP中，被软删的数据使用 belongsToMany 是无法加载的，所以请用这个吧 */
         /** 例如此处的User，如果数据被软删了，使用 belongsToMany 加 removeOption 也是无法关联到的 */
         return $this->cherryBelongsToMany(User::class, UserGoods::class, 'your_column', 'your_column', true);
+    }
+    
+    /**
+     * 一对多关联，用于一个字段存贮多个id并用逗号隔开时使用
+     * goods表: 
+     * id   name    type_id 
+     * 1   商品1    1,2
+     * 1   商品2    3,4
+     * 
+     * type表:
+     * id   name
+     * 1    分类1
+     * 2    分类2 
+     * 3    分类3
+     * 4    分类4
+     */
+    public function types(){
+        $this->cherryHasMany(TypeModel:class, 'type_id', 'id')
     }
     
 }
