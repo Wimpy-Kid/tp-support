@@ -181,6 +181,7 @@ class Goods extends \Cherrylu\TpSupport\Model\BaseModel {
     }
     
     /**
+     * 版本 >= 1.1
      * 一对多关联，用于一个字段存贮多个id并用逗号隔开时使用
      *  
      * goods表: 
@@ -197,7 +198,7 @@ class Goods extends \Cherrylu\TpSupport\Model\BaseModel {
      */
     public function types(){
         /** 此关联不可用于hasWhere检索 */
-        $this->cherryHasMany(TypeModel:class, 'type_id', 'id')
+        $this->cherryHasMany(TypeModel:class, 'id', 'type_id')
     }
     
 }

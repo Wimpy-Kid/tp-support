@@ -3,6 +3,7 @@
 namespace CherryLu\TpSupport\Model;
 
 use Closure;
+use think\Collection;
 use think\Model;
 
 /**
@@ -59,6 +60,22 @@ class HasMany extends \think\model\relation\HasMany
         }
 
         return $data;
+    }
+    public function getRelation(array $subRelation = [], Closure $closure = null): Collection
+    {
+        if ($closure) {
+            $closure($this->getClosureType($closure));
+        }
+
+        if ($this->withLimit) {
+            $this->query->limit($this->withLimit);
+        }
+
+        return $this->query
+            ->where([ [$this->foreignKey, 'in', explode(',', $this->parent->{$this->localKey})] ])
+            ->relation($subRelation)
+            ->select()
+            ->setParent(clone $this->parent);
     }
 
     public function eagerlyResult(Model $result, string $relation, array $subRelation = [], Closure $closure = null, array $cache = []): void
