@@ -29,7 +29,7 @@ composer require cherrylu/tp-support
 ```php
     namespace your\namespace;
 
-    use Cherrylu\TpSupport\Validate\BaseValidator;
+    use CherryLu\TpSupport\Validate\BaseValidator;
 
     class UpdateOrCreateActivity extends BaseValidator {
 
@@ -108,7 +108,7 @@ $data = [
     ], // ...
 ];
 
-\Cherrylu\TpSupport\Exporter::export([
+\CherryLu\TpSupport\Exporter::export([
     'nick_name'    => '用户昵称',
     'phone'        => '登录手机',
     'goods'        => [ // 合并单元格
@@ -152,7 +152,7 @@ $data = [
 /**
  * 商品Model
  */
-class Goods extends \Cherrylu\TpSupport\Model\BaseModel {
+class Goods extends \CherryLu\TpSupport\Model\BaseModel {
 
     public $modelName = '商品'; // 当有异常需要抛出时，可以用这个属性使消息更具可读性
 
@@ -211,7 +211,7 @@ TP 的集成的`Migrate`可以改为集成本包中的类，使IDE提示更友�
 
 ```php
 
-class CreateGoodsTable extends \Cherrylu\TpSupport\Migrate\MineMigrator
+class CreateGoodsTable extends \CherryLu\TpSupport\Migrate\MineMigrator
 {
     public function change()
     {
@@ -230,10 +230,10 @@ class CreateGoodsTable extends \Cherrylu\TpSupport\Migrate\MineMigrator
 <h3 id="change-history">数据修改记录 AutoFingerPrint</h3>
 
 ```php
-class Goods extends \Cherrylu\TpSupport\Model\BaseModel {
+class Goods extends \CherryLu\TpSupport\Model\BaseModel {
 
     /** 引入 AutoFingerPrint trait 每当使用模型进行修改时都会创建修改历史了，数据存在 change_history 表中*/
-    use Cherrylu\TpSupport\Model\AutoFingerPrint; 
+    use CherryLu\TpSupport\Model\AutoFingerPrint; 
 }
 
 /** 使用 saveQuietly 修改即可不触发AutoFingerPrint事件 */
