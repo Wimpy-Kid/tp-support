@@ -3,7 +3,7 @@
 
 namespace CherryLu\TpSupport\Model;
 
-use think\model\concern\SoftDelete;
+use CherryLu\model\concern\SoftDelete;
 
 class ChangeHistory extends BaseModel {
 

@@ -5,7 +5,7 @@ namespace CherryLu\TpSupport\Model;
 
 use CherryLu\TpSupport\Auth;
 use Carbon\Carbon;
-use think\Model;
+use CherryLu\Model;
 
 trait AutoFingerPrint {
 

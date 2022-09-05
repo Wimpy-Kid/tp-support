@@ -4,7 +4,7 @@ declare (strict_types = 1);
 
 namespace CherryLu\TpSupport\Model;
 
-use think\helper\Str;
+use CherryLu\helper\Str;
 
 /**
  * 模型关联处理

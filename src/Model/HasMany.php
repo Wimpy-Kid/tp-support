@@ -4,7 +4,7 @@ namespace CherryLu\TpSupport\Model;
 
 use Closure;
 use think\Collection;
-use think\Model;
+use CherryLu\Model;
 
 /**
  * 一对多关联类

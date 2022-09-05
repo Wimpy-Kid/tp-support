@@ -3,10 +3,10 @@
 
 namespace CherryLu\TpSupport\Model;
 
-use think\db\BaseQuery as Query;
-use think\Model;
+use CherryLu\db\BaseQuery as Query;
+use CherryLu\Model;
 use think\Collection;
-use think\model\Relation;
+use CherryLu\model\Relation;
 
 class BaseModel extends Model
 {
