@@ -16,7 +16,7 @@ class BaseModel extends Model
 
     private $data;
 
-    protected $autoWriteTimestamp = true;
+    public $autoWriteTimestamp = true;
 
     protected $relationWithOutGlobalScope = null;
 
